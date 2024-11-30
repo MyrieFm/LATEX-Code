@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage[ngerman]{babel}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tipa}
+\usepackage{amssymb}
+\newcommand{\E}{\mbox{I\negthinspace E}}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+  language=SQL,                
+  basicstyle=\ttfamily\small, 
+  keywordstyle=\color{purple},   
+  backgroundcolor=\color{white}, 
+  frame=single,               
+  numbers=left,               
+  numberstyle=\tiny\color{gray},   
+  stepnumber=1,               
+  showstringspaces=false      
+}
+
+\begin{document}
+
+\title{Abgabe 1 für Computergestützte Methoden}
+\author{Gruppe \emph{29, Joana Sophie Gleitsmann, Saskia Baar, Laura Ziegler}}
+\date{\emph{02.12.2024}}
+
+\pagestyle{empty}
+\pagenumbering{roman}
+
+\maketitle 
+\thispagestyle{empty}
+\tableofcontents
+
+\clearpage
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{2}
+
+\newpage
+\section{Der zentrale Grenzwertsatz}
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter (\textit{i.i.d.}) Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nützlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
+
+\subsection{Aussage}
+Sei $X_1,X_2,...,X_n$ eine Folge von \emph{i.i.d.} ZV mit dem Erwartungswert $\mu = \mathbb{E}(X_i)$ und der Varianz $\sigma^2 = \operatorname{Var}(X_i)$, wobei $0 < \sigma^2 < \infty$ gelte. Dann konvergiert die standardisierte Summe $Z_n$ dieser ZV für $n \to \infty$ in Verteilung gegen eine Standardnormalverteilung:\footnotemark
+
+
+\footnotetext{Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der \textbf{Lindeberg-Feller-Zentrale-Grenzwertsatz} \cite[Seite 328]{klenke2013}, der schwächere Bedingungen an die Unabhängigkeit und die identische Verteilung der ZV stellt.}
+
+\begin{equation}
+    \label{eq:Formel 1}
+    Z_n = \frac{\sum_{i=1}^{n} X_i - n\mu}{\sigma \sqrt{n}} 
+    \xrightarrow{d} \mathcal{N}(0,1).
+\end{equation}
+
+\vspace{0.3cm}
+
+\noindent
+Das bedeutet, dass für große $n$ die Summe der ZV näherungsweise normalverteilt ist mit Erwartungswert $n\mu$ und Varianz $n\sigma^2$:
+
+\begin{equation}
+    \label{eq:Formel 2}
+    \sum_{i=1}^{n} X_i \sim \mathcal{N}(n\mu,n\sigma^2).
+\end{equation}
+
+\subsection{Erklärung der Standardisierung}
+Um die Summe der ZV in eine Standardnormalverteilung zu transformieren, subtrahiert man den Erwartungswert $n\mu$ und teilt durch die Standardabweichung $\sigma\sqrt{n}$. Dies führt zu der obrigen Formel \eqref{eq:Formel 1}. Die Darstellung \eqref{eq:Formel 2} ist für $n \rightarrow \infty$ nicht wohldefiniert.
+
+\newpage
+
+\subsection{Anwendung}
+Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheorie angewendet. Typische Beispiele sind: 
+\begin{itemize}
+    \item Der Zentrale Grenzwertsatz besagt, dass die Summe von Zufallsvariablen $X_1, \dots, X_n$ immer approximativ normalverteilt ist, egal was die Verteilung der einzelnen $X_i$ ist. Der ZGWS kann unter anderem genutzt werden, um komplexe Wahrscheinlichkeiten approximativ zu ermitteln. 
+    Wenn zum Beispiel $X_1, \dots, X_{25}$ unabhängig und identisch verteilt (i.i.d.) mit $Exp(1)$ sind, dann ergibt sich mittels des ZGWS, dass \begin{equation}
+P(X_1+...+X_{25} \leq30) \sim \Theta(1). 
+\end{equation}
+(Siehe: \cite{Langrock2022})
+    \item In der Qualitätskontrolle wird der zentrale Grenzwertsatz genutzt, um die Verteilung der Mittelwerte von Stichproben zu normalisieren, wodurch die Analyse von Produktionsabweichungen und die Bewertung der Produktqualität vereinfacht wird.
+\end{itemize}
+
+
+
+\section{Bearbeitung zur Aufgabe 1}
+Die Bearbeitung von Aufgabe 1 folgt in Grafiken.
+\begin{itemize}
+    \item Berechnung der höchsten mittleren Temperatur in Grad Celsius mit einer Tabellenkalkulation (1P) Siehe Abbildung 
+    \item Datenbank-Schema entwerfen (1. und 2. Normalform beachten) (1P)
+    \item Umsetzung des Schemas in SQL (DDL) und Import der zugeordneten Daten als CSV. (1P)
+    \item Formulierung einer SQL-Abfrage, um die höchste mittlere Temperatur in Grad Celsius aus den Ihrer Gruppe zugeordneten Daten zu ermitteln (2P)
+    
+\end{itemize}
+
+
+
+
+
+
+
+\newpage
+
+\includegraphics[width=\textwidth]{COMET 1_geschnitten.png}
+
+
+\newpage
+\includegraphics[width=\textwidth]{COMET 2.png}
+\newpage
+\includegraphics[width=\textwidth]{COMET 3.png}
+\newpage
+
+\includegraphics[width=\textwidth]{COMET 4.png}
+\includegraphics[width=\textwidth]{COMET_Aufg_1_1.jpg}
+\newpage
+
+\includegraphics[width=\textwidth]{COMET_Aufg_1_2.jpg}
+\newpage
+
+\includegraphics[width=\textwidth]{COMET_Aufg_1_3_Teil_1.jpg}
+\includegraphics[width=\textwidth]{COMET_Aufg_1_3_Teil_2.jpg}
+\includegraphics[]{COMET_Aufg_1_4.jpg}
+
+
+
+\begin{itemize}
+    \item Die SQL-Abfrage heißt:
+\begin{lstlisting}
+SELECT MAX((average_temperature - 32) * 5.0 / 9)
+AS highest_average_temperature_C
+FROM daten2;
+\end{lstlisting}
+ Der höchste Wert der durchschnittlichen Temperatur liegt bei 17.51 .
+\end{itemize}
+
+\newpage
+
+\bibliographystyle{plain}  
+\bibliography{literatur}   
+
+Hier ist unser Latex Code hinterlegt:
+\url{https://www.overleaf.com/project/67325240e210144e46db793b}
+
+\end{document}
